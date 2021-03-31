@@ -1,21 +1,44 @@
-<!DECOTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>ろくまる農園</title>
-</head>
 <body>
-スタッフ追加<br />
-<br />
-<form method="post" action="staff_add_check.php">
-スタッフ名を入力してください<br />
-<input type="text" name="name" style="width: 200px;"><br />
-パスワードを入力してください<br />
-<input type="password" name="pass" style="width: 100px"><br />
-パスワードをもう一度入力してください<br />
-<input type="password" name="pass2" style="width: 100px"><br />
-<input type="button" onclick="history.back()" value="戻る">
-<input type="submit" value="OK">
-</form>
+<?php
+
+//入力フォームから値を取得
+$staff_name = $_POST['name'];
+$staff_pass = $_POST['pass'];
+$staff_pass2 = $_POST['pass2'];
+
+//表示文字列のエスケープ処理
+$staff_name = htmlspecialchars($staff_name,ENT_QUOTES, 'UTF-8');
+$staff_pass = htmlspecialchars($staff_pass,ENT_QUOTES, 'UTF-8');
+$staff_pass2 = htmlspecialchars($staff_pass2,ENT_QUOTES, 'UTF-8');
+
+if($staff_name == ''){
+    print'スタッフ名が入力されていません。<br />';
+}else{
+    print'スタッフ名';
+    print $staff_name;
+    print'<br />';
+}
+
+if($staff_pass == ''){
+    print 'パスワードが入力されていません<br />';
+}
+
+if($staff_pass !== $staff_pass2){
+    print 'パスワードが一致していません <br />';
+}
+
+if($staff_name == ''|| $staff_pass == ''|| $staff_pass !==$staff_pass2){
+    print '<form>';
+    print '<input type ="button" onclick ="history.back()" value ="戻る">';
+}else{
+    $staff_pass = md5($staff_pass);//暗号化
+    print '<form method ="post" action ="staff_add_done.php">';
+    print '<input type="hidden" name ="name" value ="'.$staff_name.'">';
+    print '<input type="hidden" name ="pass" value ="'.$staff_pass.'">';
+    print '<br />';
+    print '<input type ="button" onclick ="history.back()" value ="戻る">';
+    print '<input type ="submit" value ="OK">';
+    print '</form>';
+}
+?>
 </body>
-</html>
