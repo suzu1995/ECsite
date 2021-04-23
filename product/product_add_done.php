@@ -5,11 +5,11 @@
 try
 {
 
-    $staff_name = $_POST['name'];
-    $staff_pass = $_POST['pass'];
+    $product_name = $_POST['name'];
+    $product_price = $_POST['price'];
 
-    $staff_name = htmlspecialchars($staff_name,ENT_QUOTES,'UTF-8');
-    $staff_pass = htmlspecialchars($staff_pass,ENT_QUOTES,'UTF-8');
+    $product_name = htmlspecialchars($product_name,ENT_QUOTES,'UTF-8');
+    $product_price = htmlspecialchars($product_price,ENT_QUOTES,'UTF-8');
 
     $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';
 
@@ -20,14 +20,14 @@ try
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = 'INSERT INTO m_staff(name,password) VALUES (?,?)';
     $stmt = $dbh->prepare($sql);
-    $data[] = $staff_name;
-    $data[] = $staff_pass;
+    $data[] = $product_name;
+    $data[] = $product_price;
     $stmt->execute($data);
 
     $dbh = null;
 
-    print $staff_name;
-    print 'さんを追加しました。<br />';
+    print $product_name;
+    print 'を追加しました。<br />';
 }
 catch(Exception $e)
 {
@@ -37,6 +37,6 @@ catch(Exception $e)
 
 ?>
 
-<a href="staff_list.php">戻る</a>
+<a href="product_list.php">戻る</a>
 
 </body>
