@@ -17,7 +17,7 @@ if($product_name == ''){
     print'<br />';
 }
 
-if(preg_match('/¥A[0-9]+¥z/',$product_price)==0){
+if(preg_match("/^[0-9]+$/",$product_price)==0){
     print '価格は半角数字で入力してくだい<br />';
 }else{
     print '価格';
@@ -25,9 +25,7 @@ if(preg_match('/¥A[0-9]+¥z/',$product_price)==0){
     print '円<br />';
 }
 
-
-
-if($product_name == ''|| preg_match('/¥A[0-9]+¥z/',$product_price)==0){
+if($product_name == ''|| preg_match("/^[0-9]+$/",$product_price)==0){
     print '<form>';
     print '<input type ="button" onclick ="history.back()" value ="戻る">';
     print '</form>';

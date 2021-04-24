@@ -18,7 +18,7 @@ try
     $dbh = new PDO($dsn,$user,$password);
     
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = 'INSERT INTO m_staff(name,password) VALUES (?,?)';
+    $sql = 'INSERT INTO m_product(product_name,product_price) VALUES (?,?)';
     $stmt = $dbh->prepare($sql);
     $data[] = $product_name;
     $data[] = $product_price;
