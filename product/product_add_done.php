@@ -7,6 +7,7 @@ try
 
     $product_name = $_POST['name'];
     $product_price = $_POST['price'];
+    $product_gazou = $_POST['gazou_name'];
 
     $product_name = htmlspecialchars($product_name,ENT_QUOTES,'UTF-8');
     $product_price = htmlspecialchars($product_price,ENT_QUOTES,'UTF-8');
@@ -18,10 +19,11 @@ try
     $dbh = new PDO($dsn,$user,$password);
     
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = 'INSERT INTO m_product(product_name,product_price) VALUES (?,?)';
+    $sql = 'INSERT INTO m_product(product_name,product_price,product_gazou) VALUES (?,?,?)';
     $stmt = $dbh->prepare($sql);
     $data[] = $product_name;
     $data[] = $product_price;
+    $data[] = $product_gazou;
     $stmt->execute($data);
 
     $dbh = null;

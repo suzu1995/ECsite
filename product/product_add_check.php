@@ -4,6 +4,7 @@
 //入力フォームから値を取得
 $product_name = $_POST['name'];
 $product_price = $_POST['price'];
+$product_gazou = $_FILES['gazou'];
 
 //表示文字列のエスケープ処理
 $product_name = htmlspecialchars($product_name,ENT_QUOTES, 'UTF-8');
@@ -25,7 +26,17 @@ if(preg_match("/^[0-9]+$/",$product_price)==0){
     print '円<br />';
 }
 
-if($product_name == ''|| preg_match("/^[0-9]+$/",$product_price)==0){
+if($product_gazou['size'] > 0){
+    if($product_gazou['size'] > 1000000){
+        print '画像が大きすぎます';
+    }else{
+        move_uploaded_file($product_gazou['tmp_name'],'./gazou/'.$product_gazou['name']);
+        print'<img src="./gazou/'.$product_gazou['name'].'">';
+        print'<br />';
+    }
+}
+
+if($product_name == ''|| preg_match("/^[0-9]+$/",$product_price)==0 || $product_gazou['size']>1000000){
     print '<form>';
     print '<input type ="button" onclick ="history.back()" value ="戻る">';
     print '</form>';
@@ -34,6 +45,7 @@ if($product_name == ''|| preg_match("/^[0-9]+$/",$product_price)==0){
     print '<form method ="post" action ="product_add_done.php">';
     print '<input type="hidden" name ="name" value ="'.$product_name.'">';
     print '<input type="hidden" name ="price" value ="'.$product_price.'">';
+    print '<input type="hidden" name ="gazou_name" value ="'.$product_gazou['name'].'">';
     print '<br />';
     print '<input type ="button" onclick ="history.back()" value ="戻る">';
     print '<input type ="submit" value ="OK">';
