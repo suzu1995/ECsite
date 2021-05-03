@@ -6,6 +6,7 @@ try
 {
 
     $product_code = $_POST['product_code'];
+    $product_gazou = $_POST['product_gazou'];
 
     $product_code = htmlspecialchars($product_code,ENT_QUOTES,'UTF-8');
 
@@ -22,6 +23,10 @@ try
     $stmt->execute($data);
 
     $dbh = null;
+
+    if($product_gazou !=""){
+        unlink('./gazou/'.$product_gazou);
+    }
 }
 catch(Exception $e)
 {

@@ -31,9 +31,10 @@ try
     $stmt->execute($data);
 
     $dbh = null;
-
-    if($old_gazou !=""){
-        unlink('./gazou/'.$old_gazou);
+    if($old_gazou != $product_gazou){
+        if($old_gazou !=""){
+            unlink('./gazou/'.$old_gazou);
+        }
     }
 }
 catch(Exception $e)
