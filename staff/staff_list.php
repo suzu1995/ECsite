@@ -1,3 +1,9 @@
+<!DECOTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ろくまる農園</title>
+</head>
 <body>
 <?php
 
@@ -43,3 +49,4 @@ catch(Exception $e){
 <br />
 <a href="../staff_login/staff_top.php">トップメニューへ</a><br />
 </body>
+</html>

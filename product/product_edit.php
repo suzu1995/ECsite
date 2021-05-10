@@ -1,3 +1,9 @@
+<!DECOTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ろくまる農園</title>
+</head>
 <body>
 <?php
 
@@ -60,3 +66,4 @@ catch(Exception $e)
 <input type="submit" value="OK">
 </form>
 </body>
+</html>

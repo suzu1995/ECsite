@@ -1,3 +1,9 @@
+<!DECOTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ろくまる農園</title>
+</head>
 <body>
 <?php
 
@@ -53,3 +59,4 @@ if($product_name == ''|| preg_match("/^[0-9]+$/",$product_price)==0 || $product_
 }
 ?>
 </body>
+</html>

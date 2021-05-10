@@ -1,3 +1,9 @@
+<!DECOTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ろくまる農園</title>
+</head>
 <body>
 <?php
 
@@ -44,3 +50,4 @@ if($staff_name == ''|| $staff_pass == ''|| $staff_pass !==$staff_pass2){
 }
 ?>
 </body>
+</html>

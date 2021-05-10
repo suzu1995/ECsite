@@ -1,3 +1,9 @@
+<!DECOTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ろくまる農園</title>
+</head>
 <body>
 <?php
 
@@ -48,3 +54,4 @@ catch(Exception $e)
 <input type="button" onclick="history.back()" value="戻る">
 </form>
 </body>
+</html>
