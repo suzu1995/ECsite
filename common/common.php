@@ -17,4 +17,11 @@ function gengo($seireki){
     }
     return($gengo);
 }
+
+function sanitize($before){
+    foreach($before as $post_name => $value){
+        $after[$post_name] = htmlspecialchars($value,ENT_QUOTES,'UTF-8');
+    }
+    return $after;
+}
 ?>

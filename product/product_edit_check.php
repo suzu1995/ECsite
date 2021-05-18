@@ -21,16 +21,13 @@ if(isset($_SESSION['login'])==false){
 <?php
 
 //入力フォームから値を取得
-$product_code = $_POST['product_code'];
-$product_name = $_POST['product_name'];
-$product_price = $_POST['product_price'];
-$old_gazou = $_POST['old_gazou'];
+require_once('../common/common.php');
+$post = sanitize($_POST);
+$product_code = $post['product_code'];
+$product_name = $post['product_name'];
+$product_price = $post['product_price'];
+$old_gazou = $post['old_gazou'];
 $product_gazou = $_FILES['gazou'];
-
-//表示文字列のエスケープ処理
-$product_code = htmlspecialchars($product_code,ENT_QUOTES, 'UTF-8');
-$product_name = htmlspecialchars($product_name,ENT_QUOTES, 'UTF-8');
-$product_price = htmlspecialchars($product_price,ENT_QUOTES, 'UTF-8');
 
 if($product_name == ''){
     print'商品名が入力されていません。<br />';

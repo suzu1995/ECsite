@@ -23,13 +23,11 @@ if(isset($_SESSION['login'])==false){
 
 try
 {
-
-    $product_name = $_POST['name'];
-    $product_price = $_POST['price'];
-    $product_gazou = $_POST['gazou_name'];
-
-    $product_name = htmlspecialchars($product_name,ENT_QUOTES,'UTF-8');
-    $product_price = htmlspecialchars($product_price,ENT_QUOTES,'UTF-8');
+    require_once('../common/common.php');
+    $post = sanitize($_POST);
+    $product_name = $post['name'];
+    $product_price = $post['price'];
+    $product_gazou = $post['gazou_name'];
 
     $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';
 
