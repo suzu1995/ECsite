@@ -47,7 +47,7 @@ try{
         {
             break;
         }
-        print '<a href="shop_product.php?procode='.$rec['code'].'">';
+        print '<a href="shop_product.php?product_code='.$rec['product_code'].'">';
         print $rec['product_name'].'---';
         print $rec['product_price'].'円';
         print '</a>';
