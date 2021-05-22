@@ -48,13 +48,14 @@ try
     }else{
         $gazou = '<img src="../product/gazou/'.$product_gazou.'">';
     }
+    print '<a href="shop_cartin.php?product_code='.$product_code.'">カートに入れる</a><br /><br />';
+
 }
 catch(Exception $e)
 {
     print 'ただいま障害により大変ご迷惑をおかけしています。';
     exit();
 }
-print '<a href="shop_cartin.php?procode='.$product_code.'">カートに入れる</a><br /><br />';
 ?>
 
 商品参照情報<br />
