@@ -28,9 +28,12 @@ try
 
     if(isset($_SESSION['cart'])==true){
         $cart = $_SESSION['cart'];
+        $kazu = $_SESSION['kazu'];
     }
     $cart[] = $product_code;
+    $kazu[] = 1;
     $_SESSION['cart'] = $cart;
+    $_SESSION['kazu'] = $kazu;
 
     foreach($cart as $key => $pcode){
         print $pcode;
