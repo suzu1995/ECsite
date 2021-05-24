@@ -7,13 +7,6 @@
     $post = sanitize($_POST);
 
     $max = $post['max'];
-
-    if($max == 0){
-        print 'カートに商品が入っていません';
-        print '<br />';
-        print '<a href="shop_list.php">商品一覧に戻る</a>';
-        exit();
-    }
     
     for($i=0;$i<$max;$i++){
         $kazu[]=$post['kazu'.$i];
