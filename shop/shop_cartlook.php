@@ -24,9 +24,20 @@ if(isset($_SESSION['member_login'])==false){
 
 try
 {
-    $cart = $_SESSION['cart'];
-    $kazu = $_SESSION['kazu'];
-    $max = count($cart);
+    if(isset($cart)==true){
+        $cart = $_SESSION['cart'];
+        $kazu = $_SESSION['kazu'];
+        $max = count($cart);
+    }else{
+        $max = 0;
+    }
+    
+    if($max == 0){
+        print 'カートに商品が入っていません';
+        print '<br />';
+        print '<a href="shop_list.php">商品一覧に戻る</a>';
+        exit();
+    }
 
     $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';
     $user = 'suzu';
@@ -69,6 +80,7 @@ catch(Exception $e)
     <?php print $product_price[$i]; ?>円
     <input type="text" name="kazu<?php print $i;?>" value="<?php print $kazu[$i];?>">
     <?php print $product_price[$i] * $kazu[$i]; ?>円
+    <input type="checkbox" name="sakujyo<?php print $i;?>">
 
     <br />
 <?php }
