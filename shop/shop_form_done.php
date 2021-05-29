@@ -41,6 +41,68 @@ try{
     $kazu = $_SESSION['kazu'];
     $max = count($cart);
 
+    $dns = 'mysql:dbname=shop;host=localhost;charset=utf8';
+    $user = 'suzu';
+    $password = 'u9oIjVjw1dSXbaPp';
+    $dbh = new PDO($dns,$user,$password);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    for($i=0;$i<$max;$i++){
+        $sql = 'SELECT product_name,product_price FROM m_product WHERE product_code = ?';
+        $stmt = $dbh->prepare($sql);
+        $data[0] = $cart[$i];
+        $stmt->execute($data);
+
+        $record = $stmt->fetch(PDO::FETCH_ASSOC);
+        $name = $record['product_name'];
+        $price = $record['product_price'];
+        $suryo = $kazu[$i];
+        $syokei = $price * $suryo;
+
+        $honbun .=$name.'';
+        $honbun .=$price.'円 x';
+        $honbun .=$suryo.'個 =';
+        $honbun .=$syokei."円 \n";
+    }
+    $dbh = null;
+
+    $honbun .= "送料は無料です。 \n";
+    $honbun .= "--------------\n";
+    $honbun .= "\n";
+    $honbun .= "代金は以下の口座にお振込ください。 \n";
+    $honbun .= "ろくまる銀行　やさい支店　普通口座1234567\n";
+    $honbun .= "入金確認が取れ次第、梱包、発送させていただきます\n";
+    $honbun .= "\n";
+    $honbun .= "□□□□□□□□□□□□□□□□□□□□□□\n";
+    $honbun .= "〜安心野菜のろくまる農園〜\n";
+    $honbun .= "\n";
+    $honbun .= "○○県六丸郡六丸村 123-4\n";
+    $honbun .= "電話090-6060-xxxx\n";
+    $honbun .= "メール info@rokumarunouen.co.jp\n";
+    $honbun .= "□□□□□□□□□□□□□□□□□□□□□□\n";
+    // print '<br />';
+    // print nl2br($honbun);
+
+    //メールタイトル
+    $title = 'ご注文ありがとうございます';
+    //送信元
+    $header = 'Form:info@rokumarunouen.co.jp';
+    //メールを送信する命令
+    $honbun = html_entity_decode($honbun,ENT_QUOTES,'UTF-8');
+    mb_language('Japanise');
+    mb_internal_encoding('UTF-8');
+    mb_send_mail($email,$title,$honbun,$header);
+
+    //メールタイトル
+    $title = 'お客様から注文がありました';
+    //送信元
+    $header = 'Form:'.$email;
+    //メールを送信する命令
+    $honbun = html_entity_decode($honbun,ENT_QUOTES,'UTF-8');
+    mb_language('Japanise');
+    mb_internal_encoding('UTF-8');
+    mb_send_mail('info@rokumarunouen.co.jp',$title,$honbun,$header);
+
 }catch(Exception $e){
     print 'ただいま障害により大変ご迷惑をおかけしています';
     exit();
