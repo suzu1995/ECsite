@@ -31,6 +31,16 @@ try{
     print $address.'<br />';
     print $tel.'<br />';
 
+    $honbun = '';
+    $honbun .= $onamae."様 \n\n この度はご注文ありがとうございました \n";
+    $honbun .= "\n";
+    $honbun .= "ご注文商品 \n";
+    $honbun .= "------------------\n";
+
+    $cart = $_SESSION['cart'];
+    $kazu = $_SESSION['kazu'];
+    $max = count($cart);
+
 }catch(Exception $e){
     print 'ただいま障害により大変ご迷惑をおかけしています';
     exit();
