@@ -64,6 +64,36 @@ try{
         $honbun .=$suryo.'個 =';
         $honbun .=$syokei."円 \n";
     }
+    $sql = 'INSERT INTO t_sale(code_member,sale_name,sale_email,sale_postal1,sale_postal2,sale_address,sale_tel)
+        VALUES(?,?,?,?,?,?,?)';
+    $stmt = $dbh->prepare($sql);
+    $data = array();
+    $data[] = 0;
+    $data[] = $onamae;
+    $data[] = $email;
+    $data[] = $postal1;
+    $data[] = $postal2;
+    $data[] = $address;
+    $data[] = $tel;
+    $stmt->execute($data);
+
+    $sql = 'SELECT LAST_INSERT_ID()';
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
+    $record = $stmt->fetch(PDO::FETCH_ASSOC);
+    $last_code = $record['LAST_INSERT_ID()'];
+
+    for($i=0;$i=$max;$i++){
+        $sql = 'INSERT INTO t_detail(sale_code,product_code,detail_price,detail_quantity)VALUES(?,?,?,?)';
+        $stmt = $dbh->prepare($sql);
+        $data = array();
+        $data[] = $last_code;
+        $data[] = $cart[$i];
+        $data[] = $kakaku[$i];
+        $data[] = $kazu[$i];
+        $stmt->execute($data);
+    }
+
     $dbh = null;
 
     $honbun .= "送料は無料です。 \n";
