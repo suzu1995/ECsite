@@ -83,7 +83,7 @@ try{
     $record = $stmt->fetch(PDO::FETCH_ASSOC);
     $last_code = $record['LAST_INSERT_ID()'];
 
-    for($i=0;$i=$max;$i++){
+    for($i=0;$i<$max;$i++){
         $sql = 'INSERT INTO t_detail(sale_code,product_code,detail_price,detail_quantity)VALUES(?,?,?,?)';
         $stmt = $dbh->prepare($sql);
         $data = array();
