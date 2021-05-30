@@ -56,6 +56,7 @@ try{
         $record = $stmt->fetch(PDO::FETCH_ASSOC);
         $name = $record['product_name'];
         $price = $record['product_price'];
+        $kakaku[] = $price;
         $suryo = $kazu[$i];
         $syokei = $price * $suryo;
 
@@ -64,6 +65,10 @@ try{
         $honbun .=$suryo.'個 =';
         $honbun .=$syokei."円 \n";
     }
+    $sql = 'LOCK TABLES t_sale WRITE,t_detail WRITE';
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
+
     $sql = 'INSERT INTO t_sale(code_member,sale_name,sale_email,sale_postal1,sale_postal2,sale_address,sale_tel)
         VALUES(?,?,?,?,?,?,?)';
     $stmt = $dbh->prepare($sql);
@@ -93,6 +98,10 @@ try{
         $data[] = $kazu[$i];
         $stmt->execute($data);
     }
+
+    $sql = 'UNLOCK TABLES';
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
 
     $dbh = null;
 
@@ -139,5 +148,7 @@ try{
 }
 
 ?>
+<br />
+<a href="shop_list.php">商品画面へ</a>
 </body>
 </html>
