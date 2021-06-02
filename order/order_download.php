@@ -17,20 +17,22 @@ if(isset($_SESSION['login'])==false){
 <meta charset="UTF-8">
 <title>ろくまる農園</title>
 </head>
+
 <body>
 <?php
 require_once('../common/common.php');
 ?>
+
 ダウンロードしたい注文日を選んでください。<br />
-<from method="post" action="order_download_done.php">
-<?php pulldown_year();?>
-年
-<?php pulldown_month();?>
-月
-<?php pulldown_day();?>
-日<br />
-<br />
-<input type="submit" value="ダウンロードへ">
-</from>
+<form method="POST" action="order_download_done.php">
+    <?php pulldown_year();?>
+    年
+    <?php pulldown_month();?>
+    月
+    <?php pulldown_day();?>
+    日<br />
+    <br />
+    <input type="submit" value="ダウンロードへ">
+</form>
 </body>
 </html>
