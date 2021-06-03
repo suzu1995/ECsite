@@ -63,7 +63,7 @@ try{
     $stmt->execute($data);//実行
     $dbh = null;
 
-    $csv = '注文コード、注文日時、会員番号、お名前、メール、郵便番号、住所、TEL、商品コード、商品名、価格、数量';
+    $csv = '注文コード,注文日時,会員番号,お名前,メール,郵便番号,住所,TEL,商品コード,商品名,価格,数量';
     $csv .= "\n";
 
     while(true)
@@ -99,7 +99,11 @@ try{
         $csv .= "\n";
     }
 
-    print nl2br($csv);
+    // print nl2br($csv);
+    $file = fopen('./chumon.csv','w');
+    $csv = mb_convert_encoding($csv,'SJIS','UTF-8');
+    fputs($file,$csv);
+    fclose($file);
 
 }
 catch(Exception $e){
@@ -107,6 +111,10 @@ catch(Exception $e){
     exit();
 }
 ?>
+<br />
+<a href="chumon.csv">注文データのダウンロード</a><br />
+<br />
+<a href="order_download.php">日付選択へ</a><br />
 <br />
 <a href="../staff_login/staff_top.php">トップメニューへ</a><br />
 </body>
