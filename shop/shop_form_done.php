@@ -22,6 +22,10 @@ try{
     $postal2 = $post['postal2'];
     $address = $post['address'];
     $tel = $post['tel'];
+    $chumon = $post['chumon'];
+    $password = $post['password'];
+    $sex = $post['sex'];
+    $birth = $post['birth'];
 
     print $onamae.'様<br />';
     print '注文ありがとうございました。<br />';
