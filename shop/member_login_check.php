@@ -14,7 +14,7 @@ try{
     $dbh = new PDO($dsn, $user,$password);
     $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-    $sql = 'SELECT member_code,member_name FROM m_member WHERE member_code=? AND member_password=?';
+    $sql = 'SELECT member_code,member_name FROM m_member WHERE member_email=? AND member_password=?';
     $stmt = $dbh->prepare($sql);
     $data[] = $member_email;
     $data[] = $member_password;
@@ -28,7 +28,7 @@ try{
         print '<a href="member_login.html">戻る</a>';
     }else{
         session_start();
-        $_SESSION['login']= 1;
+        $_SESSION['member_login']= 1;
         $_SESSION['member_code']= $record['member_code'];
         $_SESSION['member_name']= $record['member_name'];
         header('Location:shop_list.php');
